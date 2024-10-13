@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fútbol Total</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0; 
+            background-color: #dbf308; 
+            color: #0c08e9c4; 
+        }
+
+        header {
+            background-color: #008f39;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        nav {
+            background-color: #00692f;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            background-color: #004e1e;
+            border-radius: 5px;
+        }
+
+        .banner {
+            background-image: url('IMG/futbol-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner h2 {
+            font-size: 3rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .category-card {
+            background-color: white;
+            width: 30%;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .category-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .category-card h3 {
+            color: #008f39;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .category-card p {
+            color: gray;
+        }
+
+        .news-section {
+            padding: 20px;
+            background-color: white;
+        }
+
+        .news-section h2 {
+            text-align: center;
+            color: #008f39;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .news-item {
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 5px solid #008f39;
+        }
+
+        .testimonial-section, .player-testimonial-section {
+            background-color: #14e6db;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .testimonial-section h2, .player-testimonial-section h2 {
+            font-size: 2.5rem;
+        }
+
+        .testimonial, .player-testimonial {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #008f39;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .contacto-compra {
+            padding: 20px;
+            background-color: #f1f1f1;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contacto-compra-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #resultado {
+            margin-top: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .titulo {
+            font-size: 80px !important;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .info-box {
+            display: flex;
+            background-color: #ffffff;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 900px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-box img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .info-content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #dcdcdc;
+            max-width: 500px;
+        }
+
+        .info-content h2 {
+            color: #0072bb;
+            margin-bottom: 15px;
+        }
+
+        .info-content p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .balones-legendarios {
+            background-color: #f5f5f5; 
+            padding: 20px;
+        }
+
+        .producto {
+            border: 2px solid #0000FF; 
+            border-radius: 5px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #FFFF00; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-producto {
+            display: flex;
+            align-items: center;
+        }
+
+        .imagen-producto {
+            max-width: 150px;
+            border-radius: 5px;
+            margin-right: 20px; 
+        }
+
+        .detalles-producto {
+            flex: 1;
+        }
+
+        .detalles-producto p {
+            margin: 5px 0;
+            color: #0000FF; 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Equipación Perfecta: Camisetas y Zapatillas para el Jugador</h1>
+    </header>
+
+    <nav>
+        <a href="#tienda">Tienda</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#zapatillas">Zapatillas</a>
+        <a href="#balones">Balones</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="banner">
+        <img src="../entrenamiento/IMG/logo futbol.jpg" alt="Banner de Fútbol Total" width="800" height="350" />
+    </div>
+
+    <main>
+        <section id="tienda">
+            <h2>Tienda</h2>
+
+            <div style="display: flex; align-items: flex-start; margin-bottom: 20px; border: 1px solid #ccc; padding: 20px; background-color: white;">
+                <img src="../entrenamiento/IMG/camiseta real madrid.jpg" alt="Camiseta Real Madrid" style="max-width: 200px; margin-right: 20px;">
+                <div>
+                    <h2 style="color: #003399;">Camiseta Real Madrid</h2>
+                    <p><strong>Historia:</strong> La camiseta del Real Madrid es conocida mundialmente por su color blanco puro, que ha sido símbolo del club desde su fundación en 1902. Representa la grandeza y la historia de uno de los clubes más importantes del fútbol.</p>
+                    <p><strong>Origen del nombre:</strong> El club recibió el título de "Real" en 1920 por el rey Alfonso XIII, lo que lo convirtió en "Real Madrid Club de Fútbol".</p>
+                    <p><strong>Características:</strong> Fabricada con tecnología de absorción de humedad, la camiseta es ligera y cómoda, perfecta para el rendimiento en el campo.</p>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; margin-bottom: 20px; border: 1px solid #ccc; padding: 20px; background-color: white;">
+                <img src="../entrenamiento/IMG/camiseta barcelona.jpg" alt="Camiseta Barcelona" style="max-width: 200px; margin-right: 20px;">
+                <div>
+                    <h2 style="color: #B00000;">Camiseta Barcelona</h2>
+                    <p><strong>Historia:</strong> La camiseta del FC Barcelona, con su icónico diseño azul y grana, es reconocida como una de las más emblemáticas del fútbol, simbolizando el lema "Más que un club".</p>
+                    <p><strong>Origen del nombre:</strong> Fundado en 1899, el club se ha convertido en un referente mundial, y su camiseta es símbolo de orgullo para sus seguidores.</p>
+                    <p><strong>Características:</strong> Diseñada con tecnología avanzada, brinda confort y libertad de movimiento a los jugadores.</p>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; margin-bottom: 20px; border: 1px solid #ccc; padding: 20px; background-color: white;">
+                <img src="../entrenamiento/IMG/Camisa Bayern Múnich.jpg" alt="Camiseta Bayern Múnich" style="max-width: 200px; margin-right: 20px;">
+                <div>
+                    <h2 style="color: #FF0000;">Camiseta Bayern Múnich</h2>
+                    <p><strong>Historia:</strong> La camiseta del Bayern Múnich es un símbolo del dominio del club en el fútbol alemán y europeo, destacándose por su color rojo vibrante.</p>
+                    <p><strong>Origen del nombre:</strong> Fundado en 1900, el Bayern se ha consagrado como uno de los clubes más exitosos del mundo.</p>
+                    <p><strong>Características:</strong> La camiseta está hecha de un material ligero y transpirable, ideal para el alto rendimiento.</p>
+                </div>
+            </div>
+
+            <section id="balones" class="balones-legendarios">
+                <h2>Balones Legendarios</h2>
+                
+                <!-- Balón Adidas Tango -->
+                <div class="producto">
+                    <div class="info-producto">
+                            <img src="../entrenamiento/IMG/pelota adidas tango.jpg" alt="Adidas Tango" class="imagen-producto">
+                        </a>
+                        <div class="detalles-producto">
+                            <h3 style="color: #0000FF;">Balón Adidas Tango</h3>
+                            <p>Un balón icónico utilizado en los mundiales de los años 80, famoso por su durabilidad y diseño geométrico único.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Balón Nike Total 90 -->
+                <div class="producto">
+                    <div class="info-producto">
+                            <img src="../entrenamiento/IMG/pelota  nike 90.jpg" alt="Nike Total 90" class="imagen-producto">
+                        </a>
+                        <div class="detalles-producto">
+                            <h3 style="color: #0000FF;">Balón Nike Total 90</h3>
+                            <p>Un balón revolucionario por su equilibrio y precisión, popular en los años 2000 y utilizado en competiciones internacionales.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="zapatillas" class="zapatillas-futbol">
+                <h2>Zapatillas de Fútbol</h2>
+            
+                <!-- Zapatilla Adidas Predator -->
+                <div class="producto">
+                    <div class="info-producto">
+                            <img src="../entrenamiento/IMG/Zapatilas Adidas Predator.jpg" alt="Adidas Predator" class="imagen-producto">
+                        </a>
+                        <div class="detalles-producto">
+                            <h3 style="color: #0000FF;">Zapatilla Adidas Predator</h3>
+                            <p>Diseñadas para un control excepcional y comodidad durante el juego.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Zapatilla Nike Mercurial -->
+                <div class="producto">
+                    <div class="info-producto">
+                            <img src="../entrenamiento/IMG/Zapatillas Nike Mercurial.jpg" alt="Nike Mercurial" class="imagen-producto">
+                        </a>
+                        <div class="detalles-producto">
+                            <h3 style="color: #0000FF;">Zapatilla Nike Mercurial</h3>
+                            <p>Con un diseño ligero que permite una velocidad explosiva y agilidad en el campo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <section class="opiniones" id="opiniones">
+            <h2>Opiniones de Clientes</h2>
+            <div class="testimonial-section">
+                <div class="testimonial">
+                    <p>"Las camisetas son de excelente calidad, y los envíos son rápidos. ¡Recomendadísimo!" - Juan Pérez</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Me encantó la variedad de zapatillas disponibles, y el servicio al cliente fue increíble." - Ana Gómez</p>
+                </div>
+                <div class="testimonial">
+                    <p>"La camiseta del Real Madrid es simplemente hermosa y muy cómoda." - Luis Rodríguez</p>
+                </div>
+            </div>
+        </section>
+
+         <!-- Sección de Contacto y Compra -->
+         <section class="contacto" id="contacto">
+            <h2>Contacto y Compra</h2>
+            <form class="contacto-compra-form" id="formCompra">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenda">Selecciona la prenda:</label>
+                    <select id="prenda" name="prenda" required>
+                        <option value="">Elige una prenda</option>
+                        <option value="zapatillas">Zapatillas de fútbol</option>
+                        <option value="camisetas">Camisetas del equipo</option>
+                        <option value="balones">Balones legendarios</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="metodo-pago">Selecciona método de pago:</label>
+                    <select id="metodo-pago" name="metodo-pago" required>
+                        <option value="">Elige un método de pago</option>
+                        <option value="tarjeta">Tarjeta de crédito/débito</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="transferencia">Transferencia bancaria</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje o Consulta:</label>
+                    <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                </div>
+                <button type="submit">Proceder a Pagar</button>
+            </form>
+            <p id="resultado"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fútbol Total. Jhordi González Horna</p>
+    </footer>
+
+</body>
+</html>
